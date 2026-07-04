@@ -882,7 +882,6 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 
 > 📝 **แบบฝึกหัด:** วาด Widget Tree ของโค้ดนี้ลงในใบงาน
-
 ---
 
 ### ขั้นตอนที่ 4: รันแอปพลิเคชันครั้งแรก
@@ -1053,10 +1052,10 @@ class ProfilePage extends StatelessWidget {
 ```
 
 **TODO สำหรับนักศึกษา:**
-- [ ] เปลี่ยนชื่อและรหัสนักศึกษาให้เป็นของตัวเอง
-- [ ] เปลี่ยนข้อมูลในแถวข้อมูลให้เป็นของตัวเอง
-- [ ] เพิ่ม Row ข้อมูลเพิ่มเติมอีก 2 แถว
-- [ ] ลองเปลี่ยนสี Theme จาก `Colors.teal` เป็นสีอื่น
+- [✓] เปลี่ยนชื่อและรหัสนักศึกษาให้เป็นของตัวเอง
+- [✓] เปลี่ยนข้อมูลในแถวข้อมูลให้เป็นของตัวเอง
+- [✓] เพิ่ม Row ข้อมูลเพิ่มเติมอีก 2 แถว
+- [✓] ลองเปลี่ยนสี Theme จาก `Colors.teal` เป็นสีอื่น
 
 ---
 
@@ -1070,7 +1069,10 @@ class ProfilePage extends StatelessWidget {
 6. ลองกด **R** ใน Terminal เพื่อ Hot Restart
 
 > 🔍 **ข้อสังเกต:** Hot Reload vs Hot Restart ต่างกันอย่างไร? บันทึกการสังเกตลงในใบงาน
-
+```
+Hot Reload: คือการอัปเดตแค่ UI โครงสร้างใหม่ ข้อดีคือทำงานเร็วมาก และไม่รีเซทเลขที่เรากดไว้
+Hot Restart: คือรีเซ็ตแอปโดยไม่ต้องปิดแล้วเปิดแอปใหม่ ใช้เวลาโหลดนานกว่า Hot Reload และรีเซ็ตเลขกลับไปเป็น 0
+```
 ---
 
 ## 🧪 การทดลองที่ 3: ทดลองใช้งาน Google AI Studio
@@ -1416,21 +1418,34 @@ flutter run
 
 ```
 flutter doctor output:
-┌─────────────────────────────────────────────────────────┐
-│                                                         │
-│  วางผลลัพธ์จาก flutter doctor ที่นี่                    │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                          │
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, 3.44.4, on Microsoft Windows [Version 10.0.26200.8655], locale en-US)
+[√] Windows Version (11 Home Single Language 64-bit, 25H2, 2009)
+[√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+[√] Chrome - develop for the web
+[X] Visual Studio - develop Windows apps
+    X Visual Studio not installed; this is necessary to develop Windows apps.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+[√] Connected device (3 available)
+[√] Network resources
 
-Flutter Version: ___________________
-Dart Version: ______________________
-Android SDK Version: _______________
+! Doctor found issues in 1 category.                    
+│                                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Flutter Version: 3.44.4
+Dart Version: 3.12.2
+Android SDK Version: 34.0.0
 ```
 
 ### 3.2 Screenshot ของ Flutter App
 
 ```
-[แนบ Screenshot ของ Profile Card App ที่สร้าง]
+<img width="1912" height="908" alt="image" src="https://github.com/user-attachments/assets/00a456a3-80a7-40ec-a1cb-3fb7df4518bb" />
+
 ```
 
 **Widget Tree ที่วาด:**
@@ -1439,18 +1454,39 @@ Android SDK Version: _______________
 (วาด Widget Tree ของแอปที่สร้างด้วยมือ)
 
 MaterialApp
-└── ?
-    └── ?
-        └── ...
+ └─ Scaffold
+     └─ Padding
+         └─ Column
+             ├─ SizedBox (ระยะห่าง)
+             ├─ CircleAvatar (รูปโปรไฟล์)
+             ├─ SizedBox (ระยะห่าง)
+             ├─ Text (ชื่อ Natjama Janchu)
+             ├─ SizedBox (ระยะห่าง)
+             ├─ Text (รหัสนักศึกษา)
+             ├─ SizedBox (ระยะห่าง)
+             ├─ Card (กรอบข้อมูล)
+             │   └─ Padding
+             │       └─ Column
+             │           ├─ Row (_buildInfoRow: คณะ)
+             │           ├─ Divider
+             │           ├─ Row (_buildInfoRow: วิชาที่ชอบ)
+             │           ├─ Divider
+             │           ├─ Row (_buildInfoRow: เป้าหมาย)
+             │           ├─ Divider
+             │           ├─ Row (_buildInfoRow: งานอดิเรก)
+             │           ├─ Divider
+             │           └─ Row (_buildInfoRow: เพลงที่ชอบ)
+             └─ ElevatedButton (ปุ่มทดลอง AI Chat)
+
 ```
 
 ### 3.3 การเปรียบเทียบ Hot Reload vs Hot Restart
 
 | รายการ | Hot Reload (r) | Hot Restart (R) |
 |---|---|---|
-| ความเร็ว | | |
-| State ถูก Reset? | | |
-| ใช้เมื่อไหร่ | | |
+| ความเร็ว |เร็วกว่า |ปานกลาง |
+| State ถูก Reset? |ไม่ถูก Reset | ถูก Reset|
+| ใช้เมื่อไหร่ | ปรับแต่ง UI, แก้ไขข้อความ/สี |แก้ไข Logic, เปลี่ยนโครงสร้างไฟล์, เพิ่ม Package |
 
 ### 3.4 ผลการทดลอง Prompt Engineering
 
